@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>AI帮你选咖啡 ☕</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f2ee;
+      text-align: center;
+      padding: 20px;
+    }
+    .card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      max-width: 400px;
+      margin: auto;
+    }
+    h1 { color: #6b4f4f; }
+    select, button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background: #6b4f4f;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .result {
+      margin-top: 20px;
+      padding: 15px;
+      background: #faf7f5;
+      border-radius: 12px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <h1>☕ AI帮你选咖啡</h1>
+
+  <label>你的状态：</label>
+  <select id="state">
+    <option>有点累</option>
+    <option>很疲惫</option>
+    <option>正常</option>
+    <option>想放松</option>
+  </select>
+
+  <label>你更想要：</label>
+  <select id="need">
+    <option>提神</option>
+    <option>甜一点</option>
+    <option>顺滑</option>
+    <option>清爽</option>
+  </select>
+
+  <label>你的偏好：</label>
+  <select id="taste">
+    <option>浓一点</option>
+    <option>奶多一点</option>
+    <option>甜一点</option>
+    <option>冰的</option>
+  </select>
+
+  <button onclick="recommend()">生成我的咖啡 ☕</button>
+
+  <div class="result" id="result" style="display:none;"></div>
+</div>
+
+<script>
+function recommend() {
+  const state = document.getElementById('state').value;
+  const need = document.getElementById('need').value;
+  const taste = document.getElementById('taste').value;
+
+  let coffee = "拿铁";
+  let reason = "给你一点温柔";
+  let tag = "今日治愈款";
+
+  if (need === "提神") {
+    coffee = "美式";
+    reason = "你需要一点清醒";
+    tag = "打工人回血款";
+  }
+
+  if (need === "甜一点") {
+    coffee = "焦糖玛奇朵";
+    reason = "生活需要一点甜";
+    tag = "快乐补给款";
+  }
+
+  if (need === "清爽") {
+    coffee = "冷萃";
+    reason = "清爽一下刚刚好";
+    tag = "夏日续命款";
+  }
+
+  if (need === "顺滑") {
+    coffee = "卡布奇诺";
+    reason = "轻柔顺滑更适合你";
+    tag = "温柔陪伴款";
+  }
+
+  document.getElementById('result').style.display = 'block';
+  document.getElementById('result').innerHTML = `
+    <h2>☕ 今日推荐：${coffee}</h2>
+    <p>💬 ${reason}</p>
+    <p>🏷 #${tag}</p>
+  `;
+}
+</script>
+
+</body>
+</html>
